@@ -1,0 +1,26 @@
+{
+  "name": "rest-plus",
+  "version": "1.0.0",
+  "description": "Cours de la semaine 09 420-3E4-JR Automne 2021",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js --inspect"
+  },
+  "author": "Yannick Charron",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^5.1.2",
+    "dayjs": "^1.11.6",
+    "dotenv-flow": "^3.2.0",
+    "express": "^4.18.2",
+    "express-paginate": "^1.0.2",
+    "express-validator": "^6.14.2",
+    "http-errors": "^2.0.0",
+    "mongoose": "^6.7.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}

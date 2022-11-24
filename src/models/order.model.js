@@ -19,7 +19,7 @@ const orderSchema = mongoose.Schema({
         topping: { type: String, enum: PIZZA_TOPPINGS, required: true },
     }]
 }, {
-    collection: 'order',
+    collection: 'orders',
     id: false,
     strict: 'throw'
 });

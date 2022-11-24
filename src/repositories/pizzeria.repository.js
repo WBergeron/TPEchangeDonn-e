@@ -8,7 +8,7 @@
 
 import Pizzeria from '../models/pizzeria.model.js';
 
-class PizzeriasRepository {
+class PizzeriaRepository {
 
     /*
     retrieveAll() {
@@ -39,24 +39,30 @@ class PizzeriasRepository {
     }
 
     ///-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-///
-    // Dev: William Bergeron
+    // Dev: William Bergeron / Julius Leblanc
     ///-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-///
     transform(pizzeria, retrieveOptions = {}) {
         // Accorder avec la personne qui prog ordersRepository pour la suite...
         //?embed=orders
         if (retrieveOptions.orders) {
             pizzeria.orders = ordersRepository.transform(pizzeria.orders);
-        } else {
-            // TODO Vérifier le "orders._id"
-            pizzeria.orders = { href: `${process.env.BASE_URL}/orders/${pizzeria.orders._id}` }
+        }
+        else {
+            // Il a pas order si yer pas dans le retrieveOptions
+            pizzeria.orders = { href: `${process.env.BASE_URL}/pizzerias/${pizzeria._id}/orders` }
         }
         // Créer se qu'on veut renvoyer au client de plus
         pizzeria.href = `${process.env.BASE_URL}/pizzerias/${pizzeria._id}`;
         pizzeria.lightspeed = `[${pizzeria.planet}@(${pizzeria.coord.lat};${pizzeria.coord.lat})]`;
         // Enlever se que le client veut pas
         delete pizzeria._id;
+        delete pizzeria.__v;
         return pizzeria;
     }
+    create(pizzeria) {
+        return Pizzeria.create(pizzeria);
+    }
+
 }
 
-export default new PizzeriasRepository();
+export default new PizzeriaRepository();

@@ -7,13 +7,14 @@
 ///-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-///
 
 import mongoose from 'mongoose';
-import { PLANET_NAMES } from '../data/constants';
-import { MONSTER_ANCESTORS } from '../data/constants';
-import { PIZZA_TOPPINGS } from '../data/constants';
+import { PLANET_NAMES } from '../data/constants.js';
+import { MONSTER_ANCESTORS } from '../data/constants.js';
+import { PIZZA_TOPPINGS } from '../data/constants.js';
 
 //------------------------------------------------------------------------
 const pizzeriaSchema = mongoose.Schema({
     planet: {
+        type: String,
         required: true,
         enum: PLANET_NAMES,
     },
@@ -23,8 +24,8 @@ const pizzeriaSchema = mongoose.Schema({
     },
     chef: {
         name: { type: String, required: true },
-        ancestor: { enum: MONSTER_ANCESTORS, required: true },
-        speciality: { enum: PIZZA_TOPPINGS, required: true }
+        ancestor: { type: String, enum: MONSTER_ANCESTORS, required: true },
+        speciality: { type: String, enum: PIZZA_TOPPINGS, required: true }
     }
 }, {
     collection: 'pizzerias',

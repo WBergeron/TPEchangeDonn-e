@@ -14,9 +14,9 @@ const orderSchema = mongoose.Schema({
     },
     orderDate: { type: Date, default: Date.now, required: true },
     pizzas: [{
-        size: { enum: PIZZA_SIZES, required: true },
+        size: { type: String, enum: PIZZA_SIZES, required: true },
         price: Number,
-        topping: { enum: PIZZA_TOPPINGS, required: true },
+        topping: { type: String, enum: PIZZA_TOPPINGS, required: true },
     }]
 }, {
     collection: 'order',

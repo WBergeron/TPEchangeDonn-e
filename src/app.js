@@ -13,6 +13,7 @@ const app = express();
 
 app.use(express.json());
 
+// TODO: Ajouter le path de base pour les différentes routes
 app.use('/planets', planetsRoutes);
 app.use('/explorations', explorationsRoutes);
 

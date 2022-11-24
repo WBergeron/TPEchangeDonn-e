@@ -16,7 +16,7 @@ const pizzeriaSchema = mongoose.Schema({
     planet: {
         type: String,
         required: true,
-        enum: PLANET_NAMES,
+        enum: PLANET_NAMES
     },
     coord: {
         lon: { type: Number, required: true, min: -1000, max: 1000 },

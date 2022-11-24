@@ -35,11 +35,11 @@ class PizzeriasRoutes {
                 retrieveOptions.orders = true;
             }
 
-            const idPizzeria = req.params.pizzeriaId;
-            let pizzeria = await pizzeriaRepository.retrieveById(idPizzeria, retrieveOptions);
+            const pizzeriaId = req.params.idPizzeria;
+            let pizzeria = await pizzeriaRepository.retrieveById(pizzeriaId, retrieveOptions);
 
             if (!pizzeria) {
-                return next(HttpError.NotFound(`La pizzeria avec l'identifiant ${req.params.pizzeriaId} n'existe pas`));
+                return next(HttpError.NotFound(`La pizzeria avec l'identifiant ${req.params.idPizzeria} n'existe pas`));
             }
 
             pizzeria = pizzeria.toObject({ getters: false, virtuals: false });

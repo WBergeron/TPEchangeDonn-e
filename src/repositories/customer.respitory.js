@@ -51,6 +51,14 @@ class CustomerRepository {
         return "[" + phone.substring(0, 4) + "]" + phone.substring(4, 8) + "-" + phone.substring(8, 14) + "@" + phone.substring(14, 16);
     }
 
+    ///-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-///
+    // Dev: William Bergeron
+    ///-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-///
+    update(idCustomer, customerModif) {
+        const customerToDotNotation = objectToDotNotation(customerModif);
+        return Customer.findByIdAndUpdate(idCustomer, customerToDotNotation, { new: true });
+    }
+
 }
 
 export default new CustomerRepository();

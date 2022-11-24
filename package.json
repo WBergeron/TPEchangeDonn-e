@@ -1,7 +1,7 @@
 {
   "name": "rest-plus",
   "version": "1.0.0",
-  "description": "Cours de la semaine 09 420-3E4-JR Automne 2021",
+  "description": "TP Synthese de Service d'echange de donnee (3E4)",
   "main": "server.js",
   "type": "module",
   "scripts": {

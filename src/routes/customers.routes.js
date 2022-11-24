@@ -17,10 +17,11 @@ import customerRepository from '../repositories/customer.respitory.js';
 const router = express.Router();
 
 class CustomerRoutes {
-    // Nous sommes déjà sous le path /pizzerias
+    // Nous sommes déjà sous le path /customers
     constructor() {
         // TODO: Déclarer votre ajout a l'adresse pour pointer vers votre méthode
         router.get('/:idCustomer', this.getOne);
+        router.put('/:idCustomer', this.putOne);
     }
 
     ///-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-///
@@ -49,6 +50,31 @@ class CustomerRoutes {
         }
     }
 
+    ///-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-///
+    // Dev: William Bergeron
+    ///-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-///
+    async putOne(req, res, next) {
+        try {
+            const newCustomer = req.body;
+            let customer = await customerRepository.update(req.params.idCustomer, newCustomer);
+
+            if (!customer) {
+                res.status(404).end();
+                return next(HttpError.NotFound(`Le customer avec l'id ${req.params.idCustomer} n'existe pas`));
+            }
+
+            customer = customer.toObject({ getters: false, virtuals: false });
+            customer = customerRepository.transform(customer);
+
+            if (req.query._body === 'false') {
+                return res.status(204).end();
+            }
+
+            res.status(200).json(customer);
+        } catch (err) {
+            next(err);
+        }
+    }
 }
 
 new CustomerRoutes();

@@ -1,8 +1,17 @@
+///-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-///
+//  Dev: William Bergeron                                                    //
+//  Nom de Fichier: pizzeria.model.js                                        //
+//  Date de création: 22 novembre 2022                                       //
+//  Date de modif:                                                           //
+//  Description: Model d'une pizzeria enregistrer dans la base de donnée     //
+///-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-///
+
 import mongoose from 'mongoose';
 import { PLANET_NAMES } from '../data/constants';
 import { MONSTER_ANCESTORS } from '../data/constants';
 import { PIZZA_TOPPINGS } from '../data/constants';
 
+//------------------------------------------------------------------------
 const pizzeriaSchema = mongoose.Schema({
     planet: {
         required: true,

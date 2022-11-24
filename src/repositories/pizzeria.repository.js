@@ -39,6 +39,17 @@ class PizzeriaRepository {
     }
 
     ///-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-///
+    // Dev: Hadrien Breton
+    ///-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-///
+    retrieveAll(filter) {
+        if (filter !== "") {
+            return Pizzeria.find({ "chef.speciality": filter });
+        }
+        return Pizzeria.find();
+
+    }
+
+    ///-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-///
     // Dev: William Bergeron / Julius Leblanc
     ///-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-///
     transform(pizzeria, retrieveOptions = {}) {
@@ -59,6 +70,7 @@ class PizzeriaRepository {
         delete pizzeria.__v;
         return pizzeria;
     }
+
     create(pizzeria) {
         return Pizzeria.create(pizzeria);
     }

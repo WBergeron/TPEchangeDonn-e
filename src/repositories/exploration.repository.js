@@ -2,25 +2,25 @@ import Exploration from '../models/exploration.model.js';
 
 import planetRepository from './planet.repository.js';
 
-class ExplorationsRepository {
-    
+class ExplorationRepository {
+
     retrieveAll() {
         return Exploration.find();
     }
 
     retrieve(retrieveOptions) {
         const retrieveQuery = Exploration.find()
-                                .limit(retrieveOptions.limit)
-                                .skip(retrieveOptions.skip);
+            .limit(retrieveOptions.limit)
+            .skip(retrieveOptions.skip);
 
-        return Promise.all([ retrieveQuery, Exploration.countDocuments() ]);
+        return Promise.all([retrieveQuery, Exploration.countDocuments()]);
     }
 
     retrieveById(idExploration, retrieveOptions) {
 
         const retrieveQuery = Exploration.findById(idExploration);
 
-        if(retrieveOptions.planet) {
+        if (retrieveOptions.planet) {
             retrieveQuery.populate('planet');
         }
 
@@ -28,9 +28,9 @@ class ExplorationsRepository {
     }
 
     transform(exploration, retrieveOptions = {}) {
-        
+
         //?embed=planet
-        if(retrieveOptions.planet) {
+        if (retrieveOptions.planet) {
             exploration.planet = planetRepository.transform(exploration.planet);
 
         } else {
@@ -45,4 +45,4 @@ class ExplorationsRepository {
 
 }
 
-export default new ExplorationsRepository();
+export default new ExplorationRepository();

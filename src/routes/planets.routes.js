@@ -50,11 +50,11 @@ class PlanetsRoutes {
 
       if (req.query._body === 'false') {
         return res.status(200).end();
-        
+
       }
 
       res.status(200).json(planet);
-      
+
     } catch (err) {
       return next(err);
     }
@@ -85,6 +85,7 @@ class PlanetsRoutes {
       planetAdded = planetRepository.transform(planetAdded);
 
       res.status(201).json(planetAdded);
+
     } catch (err) {
       return next(err);
     }

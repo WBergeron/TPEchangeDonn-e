@@ -13,15 +13,15 @@ const customerSchema = mongoose.Schema({
   birthday: { type: String, required: true },
   referalCode: { type: String }
 }, {
-  collection: 'planets',
-  strict: 'throw'
+  collection: 'customers',
+  id: false,
 });
 
-planetSchema.virtual('explorations', {
+/*planetSchema.virtual('explorations', {
   ref: 'Exploration',
   localField: '_id',
   foreignField: 'planet',
   justOne: false
-});
+});*/
 
-export default mongoose.model('Planet', planetSchema);
+export default mongoose.model('Customer', customerSchema);

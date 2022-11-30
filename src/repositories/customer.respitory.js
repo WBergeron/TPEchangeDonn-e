@@ -10,6 +10,17 @@ import Customer from '../models/customer.model.js';
 
 class CustomerRepository {
 
+    ///-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-///
+    // Dev: William Bergeron
+    ///-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-///
+    retrieve(retrieveOptions) {
+        const retrieveQuery = Customer.find()
+            .limit(retrieveOptions.limit)
+            .skip(retrieveOptions.skip);
+
+        return Promise.all([retrieveQuery, Customer.countDocuments()]);
+    }
+
 
     ///-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-///
     // Dev: Julius Leblanc

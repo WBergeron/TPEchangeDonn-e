@@ -22,6 +22,7 @@ class CustomerRoutes {
         // TODO: Déclarer votre ajout a l'adresse pour pointer vers votre méthode
         router.get('/:idCustomer', this.getOne);
         router.put('/:idCustomer', this.putOne);
+        router.get('/', this.getAll);
     }
 
     ///-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-///
@@ -71,6 +72,70 @@ class CustomerRoutes {
             }
 
             res.status(200).json(customer);
+        } catch (err) {
+            next(err);
+        }
+    }
+
+    ///-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-///
+    // Dev: William Bergeron
+    ///-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-///
+    async getAll(req, res, next) {
+        try {
+            const retrieveOptions = {
+                skip: req.skip,
+                limit: req.query.limit,
+                planet: req.params.planet
+            }
+
+            let [customers, itemCount] = await customerRepository.retrieve(retrieveOptions);
+
+            customers = customers.map(e => {
+                e = e.toObject({ getters: false, virtuals: false });
+                e = customerRepository.transform(e);
+                return e;
+            });
+            const pageCount = Math.ceil(itemCount / req.query.limit)
+            const hasNextPageFunction = paginate.hasNextPages(req);
+            const hasNextPage = hasNextPageFunction(pageCount);
+
+            const pagesLinksFunction = paginate.getArrayPages(req);
+            const links = pagesLinksFunction(40, pageCount, req.query.page = 0);
+            console.log(links);
+
+            const payload = {
+                _metadata: {
+                    hasNextPage: hasNextPage,
+                    page: req.query.page,
+                    limit: req.query.limit,
+                    skip: req.skip,
+                    totalPages: pageCount,
+                    totalDocuments: itemCount
+                },
+                _links: {
+                    prev: `${process.env.BASE_URL}${links[0]}`,
+                    self: `${process.env.BASE_URL}${links[1]}`,
+                    next: `${process.env.BASE_URL}${links[2]}`
+
+                },
+                data: []
+            }
+
+            //Cas particulier de la première page
+            if (req.query.page === 1) {
+                payload._links.self = `${process.env.BASE_URL}${links[0]}`;
+                payload._links.next = `${process.env.BASE_URL}${links[1]}`;
+                delete payload._links.prev;
+            }
+
+            //Cas particulier de la dernière page
+            if (!hasNextPage) {
+                payload._links.prev = `${process.env.BASE_URL}${links[1]}`;
+                payload._links.self = `${process.env.BASE_URL}${links[2]}`;
+                delete payload._links.next;
+            }
+
+            res.status(200).json(payload);
         } catch (err) {
             next(err);
         }

@@ -1,3 +1,10 @@
+///-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-///
+//  Dev: Hadrien Breton                                                      //
+//  Nom de Fichier: order.model.js                                           //
+//  Date de création: 22 novembre 2022                                       //
+//  Description: Model d'une commande enregistrée dans la base de donnée     //
+///-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-///
+
 import mongoose from 'mongoose';
 import { PIZZA_SIZES, PIZZA_TOPPINGS } from '../data/constants.js'
 

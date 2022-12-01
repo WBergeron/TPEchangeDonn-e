@@ -10,6 +10,17 @@ import Customer from '../models/customer.model.js';
 
 class CustomerRepository {
 
+    ///-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-///
+    // Dev: William Bergeron
+    ///-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-///
+    retrieve(retrieveOptions) {
+        const retrieveQuery = Customer.find()
+            .limit(retrieveOptions.limit)
+            .skip(retrieveOptions.skip);
+
+        return Promise.all([retrieveQuery, Customer.countDocuments()]);
+    }
+
 
     ///-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-///
     // Dev: Julius Leblanc
@@ -49,6 +60,14 @@ class CustomerRepository {
     }
     transformPhone(phone) {
         return "[" + phone.substring(0, 4) + "]" + phone.substring(4, 8) + "-" + phone.substring(8, 14) + "@" + phone.substring(14, 16);
+    }
+
+    ///-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-///
+    // Dev: William Bergeron
+    ///-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-///
+    update(idCustomer, customerModif) {
+        const customerToDotNotation = objectToDotNotation(customerModif);
+        return Customer.findByIdAndUpdate(idCustomer, customerToDotNotation, { new: true });
     }
 
 }

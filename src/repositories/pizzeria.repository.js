@@ -9,33 +9,30 @@
 import Pizzeria from '../models/pizzeria.model.js';
 
 class PizzeriaRepository {
-
-    /*
-    retrieveAll() {
-        return Exploration.find();
-    }
-
-    retrieve(retrieveOptions) {
-        const retrieveQuery = Exploration.find()
-            .limit(retrieveOptions.limit)
-            .skip(retrieveOptions.skip);
-
-        return Promise.all([retrieveQuery, Exploration.countDocuments()]);
-    }
-    */
-
     ///-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-///
     // Dev: William Bergeron
     ///-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-///
     retrieveById(idPizzeria, retrieveOptions) {
         // Avoir la pizzeria avec l'id passer en paramètre
         const retrieveQuery = Pizzeria.findById(idPizzeria);
+
         // Si l'emblem orders est la
         if (retrieveOptions.orders) {
             retrieveQuery.populate('order');
         }
 
         return retrieveQuery;
+    }
+
+    ///-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-///
+    // Dev: Hadrien Breton
+    ///-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-///
+    retrieveAll(filter) {
+        if (filter !== "") {
+            return Pizzeria.find({ "chef.speciality": filter });
+        }
+        return Pizzeria.find();
+
     }
 
     ///-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-///
@@ -49,16 +46,18 @@ class PizzeriaRepository {
         }
         else {
             // Il a pas order si yer pas dans le retrieveOptions
+            // On veut tu quand même faire un href pour rien???
             pizzeria.orders = { href: `${process.env.BASE_URL}/pizzerias/${pizzeria._id}/orders` }
         }
         // Créer se qu'on veut renvoyer au client de plus
         pizzeria.href = `${process.env.BASE_URL}/pizzerias/${pizzeria._id}`;
-        pizzeria.lightspeed = `[${pizzeria.planet}@(${pizzeria.coord.lat};${pizzeria.coord.lat})]`;
+        pizzeria.lightspeed = `[${pizzeria.planet}]@(${pizzeria.coord.lat};${pizzeria.coord.lat})]`;
         // Enlever se que le client veut pas
         delete pizzeria._id;
         delete pizzeria.__v;
         return pizzeria;
     }
+
     create(pizzeria) {
         return Pizzeria.create(pizzeria);
     }

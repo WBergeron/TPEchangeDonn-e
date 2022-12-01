@@ -20,6 +20,7 @@ class PizzeriasRoutes {
     // Nous sommes déjà sous le path /pizzerias
     constructor() {
         // TODO: Déclarer votre ajout a l'adresse pour pointer vers votre méthode
+        router.get('/', this.getAll);
         router.get('/:idPizzeria', this.getOne);
         router.post('/', this.post);
     }
@@ -34,11 +35,11 @@ class PizzeriasRoutes {
                 retrieveOptions.orders = true;
             }
 
-            const idPizzeria = req.params.pizzeriaId;
-            let pizzeria = await pizzeriaRepository.retrieveById(idPizzeria, retrieveOptions);
+            const pizzeriaId = req.params.idPizzeria;
+            let pizzeria = await pizzeriaRepository.retrieveById(pizzeriaId, retrieveOptions);
 
             if (!pizzeria) {
-                return next(HttpError.NotFound(`La pizzeria avec l'identifiant ${req.params.pizzeriaId} n'existe pas`));
+                return next(HttpError.NotFound(`La pizzeria avec l'identifiant ${req.params.idPizzeria} n'existe pas`));
             }
 
             pizzeria = pizzeria.toObject({ getters: false, virtuals: false });
@@ -69,6 +70,57 @@ class PizzeriasRoutes {
             res.status(201).json(pizzeriaAdded);
         } catch (err) {
             return next(err);
+        }
+    }
+
+    ///-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-///
+    // Dev: Hadrien Breton
+    ///-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-///
+    async getAll(req, res, next) {
+        try {
+            const displayOptions = {};
+            if (req.query.page && parseInt(req.query.page) > 0) {
+                displayOptions.page = req.query.page;
+            } else {
+                displayOptions.page = 1;
+            }
+            if (req.query.limit && parseInt(req.query.limit) > 0 && parseInt(req.query.limit) < 50) {
+                displayOptions.limit = req.query.limit;
+            } else {
+                displayOptions.limit = 25;
+            }
+            let filter = "";
+            if (req.query.speciality) {
+                filter = req.query.speciality;
+            }
+
+            let pizzerias = await pizzeriaRepository.retrieveAll(filter);
+
+            let i = 1;
+            let pg = 1;
+            pizzerias = pizzerias.map((p) => {
+                p = p.toObject({ getters: false, virtuals: false });
+                p = pizzeriaRepository.transform(p);
+
+                if (i <= parseInt(displayOptions.limit) && pg == displayOptions.page) {
+                    i++
+                    if (i > parseInt(displayOptions.limit)) {
+                        i = 1;
+                        pg++;
+                    }
+                    return p;
+                }
+                i++;
+                if (i > parseInt(displayOptions.limit)) {
+                    i = 1;
+                    pg++;
+                }
+            });
+            pizzerias = pizzerias.filter(p => p);
+
+            res.status(200).json(pizzerias);
+        } catch (err) {
+            next(err);
         }
     }
 

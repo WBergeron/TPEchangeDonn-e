@@ -23,6 +23,7 @@ class CustomerRoutes {
         router.get('/:idCustomer', this.getOne);
         router.put('/:idCustomer', this.putOne);
         router.get('/', this.getAll);
+        router.post('/', this.post)
     }
 
     ///-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-///
@@ -137,6 +138,32 @@ class CustomerRoutes {
 
             res.status(200).json(payload);
         } catch (err) {
+            next(err);
+        }
+    }
+
+    ///-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-///
+    // Dev: Hadrien Breton
+    ///-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-///
+    async post(req, res, next) {
+        try {
+
+            if (Object.keys(req.body).length === 0) {
+                return next(HttpError.BadRequest('Le client ne peut pas contenir aucune donnée'));
+            }
+
+            //TODO: Erreur 409: Conflit (Lorsque le courriel existe déjà)
+
+            let newCustomer = await customerRepository.create(req.body);
+            newCustomer = newCustomer.toObject({ getters: false, virtuals: false });
+            newCustomer = customerRepository.transform(newCustomer);
+
+            if (req.params._body === "false") {
+                res.status(204).end();
+            }
+            res.status(201).json(newCustomer);
+        }
+        catch (err) {
             next(err);
         }
     }

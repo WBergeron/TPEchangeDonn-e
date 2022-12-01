@@ -70,6 +70,13 @@ class CustomerRepository {
         return Customer.findByIdAndUpdate(idCustomer, customerToDotNotation, { new: true });
     }
 
+    ///-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-///
+    // Dev: Hadrien Breton
+    ///-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-///
+    create(customer) {
+        return Customer.create(customer);
+    }
+
 }
 
 export default new CustomerRepository();

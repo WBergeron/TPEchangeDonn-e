@@ -23,7 +23,7 @@ const orderSchema = mongoose.Schema({
     pizzas: [{
         size: { type: String, enum: PIZZA_SIZES, required: true },
         price: Number,
-        topping: { type: String, enum: PIZZA_TOPPINGS, required: true },
+        toppings: { type: String, enum: PIZZA_TOPPINGS, required: true },
     }]
 }, {
     collection: 'orders',

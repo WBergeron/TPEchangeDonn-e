@@ -17,11 +17,11 @@ const customerSchema = mongoose.Schema({
   id: false,
 });
 
-/*planetSchema.virtual('explorations', {
-  ref: 'Exploration',
+customerSchema.virtual('orders', {
+  ref: 'Order',
   localField: '_id',
-  foreignField: 'planet',
+  foreignField: 'customer',
   justOne: false
-});*/
+});
 
 export default mongoose.model('Customer', customerSchema);

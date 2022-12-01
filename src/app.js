@@ -6,6 +6,7 @@ import errorMiddleware from './middlewares/errors.js';
 
 import pizzeriasRoutes from './routes/pizzerias.routes.js';
 import customersRoutes from './routes/customers.routes.js';
+import ordersRoutes from './routes/orders.routes.js';
 
 database();
 
@@ -16,6 +17,7 @@ app.use(express.json());
 // TODO: Ajouter le path de base pour les différentes routes
 app.use('/pizzerias', pizzeriasRoutes);
 app.use('/customers', customersRoutes);
+app.use('/orders', ordersRoutes);
 
 app.use(errorMiddleware);
 

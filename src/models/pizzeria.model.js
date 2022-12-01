@@ -31,5 +31,11 @@ const pizzeriaSchema = mongoose.Schema({
     collection: 'pizzerias',
     id: false
 });
+pizzeriaSchema.virtual('orders', {
+    ref: 'Order',
+    localField: '_id',
+    foreignField: 'pizzeria',
+    justOne: false
+});
 
 export default mongoose.model('Pizzeria', pizzeriaSchema);

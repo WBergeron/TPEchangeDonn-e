@@ -10,7 +10,7 @@ import express from 'express';
 import paginate from 'express-paginate';
 import HttpError from 'http-errors';
 
-import customerRepository from '../repositories/customer.respitory.js';
+import customerRepository from '../repositories/customer.repository.js';
 
 // TODO: Importer le repository pour les fonctions de recherche
 

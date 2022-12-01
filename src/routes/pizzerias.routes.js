@@ -64,7 +64,7 @@ class PizzeriasRoutes {
             let pizzeriaAdded = await pizzeriaRepository.create(newPizzeria);
             pizzeriaAdded = pizzeriaAdded.toObject({ getters: false, virtuals: false });
             if (req.query._body === 'false') {
-                return res.status(201).end();
+                return res.status(204).end();
             }
             pizzeriaAdded = pizzeriaRepository.transform(pizzeriaAdded);
             res.status(201).json(pizzeriaAdded);

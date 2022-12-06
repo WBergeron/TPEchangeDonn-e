@@ -14,10 +14,19 @@ class CustomerRepository {
     // Dev: William Bergeron
     ///-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-///
     retrieve(retrieveOptions) {
-        const retrieveQuery = Customer.find()
-            .limit(retrieveOptions.limit)
-            .skip(retrieveOptions.skip);
+        let retrieveQuery;
+        if (retrieveOptions.planet) {
+            retrieveQuery = Customer.find({ 'planet': retrieveOptions.planet })
+                .limit(retrieveOptions.limit)
+                .skip(retrieveOptions.skip)
+                .sort({ birthday: 1 });
 
+        } else {
+            retrieveQuery = Customer.find()
+                .limit(retrieveOptions.limit)
+                .skip(retrieveOptions.skip)
+                .sort({ birthday: 1 });
+        }
         return Promise.all([retrieveQuery, Customer.countDocuments()]);
     }
 

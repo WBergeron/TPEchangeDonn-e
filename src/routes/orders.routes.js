@@ -20,7 +20,7 @@ class OrdersRoutes {
     // Nous sommes déjà sous le path /orders
     constructor() {
         // TODO: Déclarer votre ajout a l'adresse pour pointer vers votre méthode
-        router.get('/', paginate.middleware(10,30), this.getAll);
+        router.get('/', paginate.middleware(10, 30), this.getAll);
     }
 
     ///-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-///
@@ -28,16 +28,17 @@ class OrdersRoutes {
     ///-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-///
     async getAll(req, res, next) {
         try {
- 
+
             const retrieveOptions = {
-                limit:req.query.limit,
-                skip: req.skip,
+                page: req.query.page,
+                limit: req.query.limit,
+                skip: req.query.skip,
                 topping: req.query.topping
             }
 
-            let [ orders, itemCount ] = await orderRepository.retrieve(retrieveOptions);
+            let [orders, itemCount] = await orderRepository.retrieve(retrieveOptions);
             orders = orders.map(o => {
-                o = o.toObject({getters: false, virtuals:false});
+                o = o.toObject({ getters: false, virtuals: false });
                 o = orderRepository.transform(o);
                 return o;
             });
@@ -48,11 +49,11 @@ class OrdersRoutes {
 
             const pagesLinksFunction = paginate.getArrayPages(req);
             const links = pagesLinksFunction(3, pageCount, req.query.page);
-            console.log(links); 
+            console.log(links);
 
             const payload = {
                 _metadata: {
-                    hasNextPage:hasNextPage, 
+                    hasNextPage: hasNextPage,
                     page: req.query.page,
                     limit: req.query.limit,
                     skip: req.skip,
@@ -60,30 +61,30 @@ class OrdersRoutes {
                     totalDocuments: itemCount
                 },
                 _links: {
-                    prev:`${process.env.BASE_URL}${links[0].url}`,
-                    self:`${process.env.BASE_URL}${links[1].url}`,
-                    next:`${process.env.BASE_URL}${links[2].url}`
+                    prev: `${process.env.BASE_URL}${links[0].url}`,
+                    self: `${process.env.BASE_URL}${links[1].url}`,
+                    next: `${process.env.BASE_URL}${links[2].url}`
 
                 },
                 data: orders
             }
 
             //Cas particulier de la première page
-            if(req.query.page === 1) {
+            if (req.query.page === 1) {
                 payload._links.self = `${process.env.BASE_URL}${links[0].url}`;
                 payload._links.next = `${process.env.BASE_URL}${links[1].url}`;
                 delete payload._links.prev;
             }
 
             //Cas particulier de la dernière page
-            if(!hasNextPage) {
+            if (!hasNextPage) {
                 payload._links.prev = `${process.env.BASE_URL}${links[1].url}`;
                 payload._links.self = `${process.env.BASE_URL}${links[2].url}`;
                 delete payload._links.next;
             }
 
             res.status(200).json(payload);
-        } catch(err) {
+        } catch (err) {
             return next(err);
         }
     }

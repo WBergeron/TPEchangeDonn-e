@@ -22,7 +22,7 @@ class CustomerRoutes {
         // TODO: Déclarer votre ajout a l'adresse pour pointer vers votre méthode
         router.get('/:idCustomer', this.getOne);
         router.put('/:idCustomer', this.putOne);
-        router.get('/', this.getAll);
+        router.get('/', paginate.middleware(20, 40), this.getAll);
         router.post('/', this.post)
     }
 
@@ -84,9 +84,10 @@ class CustomerRoutes {
     async getAll(req, res, next) {
         try {
             const retrieveOptions = {
+                page: req.query.page,
                 skip: req.skip,
                 limit: req.query.limit,
-                planet: req.params.planet
+                planet: req.query.planet
             }
 
             let [customers, itemCount] = await customerRepository.retrieve(retrieveOptions);
@@ -96,13 +97,13 @@ class CustomerRoutes {
                 e = customerRepository.transform(e);
                 return e;
             });
-            const pageCount = Math.ceil(itemCount / req.query.limit)
+            const pageCount = Math.ceil(itemCount / req.query.limit);
             const hasNextPageFunction = paginate.hasNextPages(req);
             const hasNextPage = hasNextPageFunction(pageCount);
 
             const pagesLinksFunction = paginate.getArrayPages(req);
-            const links = pagesLinksFunction(40, pageCount, req.query.page = 0);
-            console.log(links);
+            const links = pagesLinksFunction(3, pageCount, req.query.page);
+
 
             const payload = {
                 _metadata: {
@@ -117,9 +118,8 @@ class CustomerRoutes {
                     prev: `${process.env.BASE_URL}${links[0]}`,
                     self: `${process.env.BASE_URL}${links[1]}`,
                     next: `${process.env.BASE_URL}${links[2]}`
-
                 },
-                data: []
+                data: customers
             }
 
             //Cas particulier de la première page

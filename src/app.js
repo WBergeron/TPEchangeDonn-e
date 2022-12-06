@@ -14,7 +14,6 @@ const app = express();
 
 app.use(express.json());
 
-// TODO: Ajouter le path de base pour les différentes routes
 app.use('/pizzerias', pizzeriasRoutes);
 app.use('/customers', customersRoutes);
 app.use('/orders', ordersRoutes);

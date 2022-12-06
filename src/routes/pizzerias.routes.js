@@ -57,7 +57,7 @@ class PizzeriasRoutes {
         const newPizzeria = req.body;
 
         if (Object.keys(newPizzeria).length === 0) {
-            return next(HttpError.BadRequest('La Pizzeria ne peut pas contenir aucune donnée'));
+            return next(HttpError[422]('La Pizzeria ne peut pas contenir aucune donnée'));
         }
 
         try {

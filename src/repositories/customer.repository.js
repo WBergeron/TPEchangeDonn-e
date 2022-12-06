@@ -6,7 +6,9 @@
 //  Description: Fonction qui recupère l'information selon les paramètres
 ///-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-///
 
+import dayjs from 'dayjs';
 import Customer from '../models/customer.model.js';
+import orderRepository from './order.repository.js';
 
 class CustomerRepository {
 
@@ -39,7 +41,7 @@ class CustomerRepository {
         const retrieveQuery = Customer.findById(idCustomer);
         // Si l'emblem orders est la
         if (retrieveOptions.orders) {
-            retrieveQuery.populate('order');
+            retrieveQuery.populate('orders');
         }
 
         return retrieveQuery;
@@ -52,7 +54,7 @@ class CustomerRepository {
         // Accorder avec la personne qui prog ordersRepository pour la suite...
         //?embed=orders
         if (retrieveOptions.orders) {
-            customer.orders = ordersRepository.transform(customer.orders);
+            customer.orders = orderRepository.transform(customer.orders);
         }
         else {
             // Il a pas order si yer pas dans le retrieveOptions
@@ -63,6 +65,8 @@ class CustomerRepository {
         customer.href = `${process.env.BASE_URL}/customers/${customer._id}`;
         customer.lightspeed = `[${customer.planet}@(${customer.coord.lat};${customer.coord.lat})]`;
         // Enlever se que le client veut pas
+        let maintenant = dayjs(new Date());
+        customer.age = maintenant.diff(customer.birthday, 'y');
         delete customer._id;
         delete customer.__v;
         return customer;

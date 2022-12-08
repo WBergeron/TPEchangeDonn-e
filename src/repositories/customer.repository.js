@@ -54,7 +54,11 @@ class CustomerRepository {
         // Accorder avec la personne qui prog ordersRepository pour la suite...
         //?embed=orders
         if (retrieveOptions.orders) {
-            customer.orders = orderRepository.transform(customer.orders);
+            console.log(customer);
+            customer.orders = customer.orders.map((o) => {
+                o = orderRepository.transform(o);
+                return o;
+            });
         }
         else {
             // Il a pas order si yer pas dans le retrieveOptions

@@ -32,7 +32,6 @@ class OrdersRoutes {
             const retrieveOptions = {
                 page: req.query.page,
                 limit: req.query.limit,
-                skip: req.query.skip,
                 topping: req.query.topping
             }
 
@@ -56,7 +55,6 @@ class OrdersRoutes {
                     hasNextPage: hasNextPage,
                     page: req.query.page,
                     limit: req.query.limit,
-                    skip: req.skip,
                     totalPages: pageCount,
                     totalDocuments: itemCount
                 },

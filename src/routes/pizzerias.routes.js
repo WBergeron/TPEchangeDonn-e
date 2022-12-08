@@ -11,6 +11,8 @@ import paginate from 'express-paginate';
 import HttpError from 'http-errors';
 
 import pizzeriaRepository from '../repositories/pizzeria.repository.js';
+import pizzeriaValidator from '../validators/pizzerias.validator.js';
+import validator from '../middlewares/validator.js';
 
 // TODO: Importer le repository pour les fonctions de recherche
 
@@ -22,7 +24,7 @@ class PizzeriasRoutes {
         // TODO: Déclarer votre ajout a l'adresse pour pointer vers votre méthode
         router.get('/', this.getAll);
         router.get('/:idPizzeria', this.getOne);
-        router.post('/', this.post);
+        router.post('/', pizzeriaValidator.complete(), validator, this.post);
     }
 
     ///-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-///

@@ -9,6 +9,7 @@
 import dayjs from 'dayjs';
 import Customer from '../models/customer.model.js';
 import orderRepository from './order.repository.js';
+import objectToDotNotation from '../libs/objectToDotNotation.js';
 
 class CustomerRepository {
 

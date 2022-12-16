@@ -11,6 +11,8 @@ import paginate from 'express-paginate';
 import HttpError from 'http-errors';
 
 import customerRepository from '../repositories/customer.repository.js';
+import customersValidator from '../validators/customers.validator.js';
+import validator from '../middlewares/validator.js';
 
 // TODO: Importer le repository pour les fonctions de recherche
 
@@ -21,7 +23,7 @@ class CustomerRoutes {
     constructor() {
         // TODO: Déclarer votre ajout a l'adresse pour pointer vers votre méthode
         router.get('/:idCustomer', this.getOne);
-        router.put('/:idCustomer', this.putOne);
+        router.put('/:idCustomer', customersValidator.complete(), validator, this.putOne);
         router.get('/', paginate.middleware(20, 40), this.getAll);
         router.post('/', this.post)
     }
@@ -57,6 +59,7 @@ class CustomerRoutes {
     async putOne(req, res, next) {
         try {
             const newCustomer = req.body;
+
             let customer = await customerRepository.update(req.params.idCustomer, newCustomer);
 
             if (!customer) {

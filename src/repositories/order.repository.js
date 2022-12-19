@@ -17,17 +17,17 @@ class OrderRepository {
     retrieve(retrieveOptions) {
         let retrieveQuery;
         if (retrieveOptions.topping) {
-            retrieveQuery = Order.find({'pizzas.toppings': retrieveOptions.topping})
-            .limit(retrieveOptions.limit)
-            .skip(retrieveOptions.skip)
-            .sort({orderDate: 1}); 
-        }else{
+            retrieveQuery = Order.find({ 'pizzas.toppings': retrieveOptions.topping })
+                .limit(retrieveOptions.limit)
+                .skip(retrieveOptions.skip)
+                .sort({ orderDate: 1 });
+        } else {
             retrieveQuery = Order.find()
-            .limit(retrieveOptions.limit)
-            .skip(retrieveOptions.skip)
-            .sort({orderDate: 1});
+                .limit(retrieveOptions.limit)
+                .skip(retrieveOptions.skip)
+                .sort({ orderDate: 1 });
         }
-        return Promise.all([ retrieveQuery, Order.countDocuments() ]);
+        return Promise.all([retrieveQuery, Order.countDocuments()]);
 
     }
 
@@ -43,7 +43,7 @@ class OrderRepository {
         }
         order.subTotal = 0;
         order.pizzas.forEach(p => {
-            order.subTotal += p.price;         
+            order.subTotal += p.price;
         });
         order.taxeRates = 0.0087;
         order.taxes = order.subTotal * order.taxeRates;

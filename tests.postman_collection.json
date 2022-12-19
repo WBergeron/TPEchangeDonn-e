@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "326b9240-de41-45fb-bfa3-fa22393dcdaf",
+		"_postman_id": "b97be2de-4791-4dd8-ae3a-7a0845a06899",
 		"name": "tests",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "23246397"
+		"_exporter_id": "23246378"
 	},
 	"item": [
 		{
@@ -460,7 +460,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": ""
+									"raw": "{\r\n            \"coord\": {\r\n                \"lat\": -542.305,\r\n                \"lon\": -855.561\r\n            },\r\n            \"name\": \"Roger Lafortune\",\r\n            \"planet\": \"Phillon HZZK\",\r\n            \"referalCode\": \"Ookuuh6wuQuee\",\r\n            \"email\": \"7865zsax@superrito.com\",\r\n            \"phone\": \"[5EF3]6400-75270A@77\",\r\n            \"birthday\": \"1934-11-25\",\r\n            \"orders\": {\r\n                \"href\": \"http://localhost:7187/customers/5fc125a21633312494c429be/orders\"\r\n            },\r\n            \"href\": \"http://localhost:7187/customers/5fc125a21633312494c429be\",\r\n            \"lightspeed\": \"[Phillon HZZK@(-542.305;-542.305)]\",\r\n            \"age\": 88\r\n        }"
 								},
 								"url": {
 									"raw": "http://localhost:7187/customers/",
@@ -491,18 +491,23 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": ""
+									"raw": "{\r\n            \"coord\": {\r\n                \"lat\": -542.305,\r\n                \"lon\": -855.561\r\n            },\r\n            \"name\": \"Michel Gagné\",\r\n            \"planet\": \"Phillon HZZK\",\r\n            \"referalCode\": \"Ookuuh6wuQuee\",\r\n            \"email\": \"zvpxcoiu@superito.com\",\r\n            \"phone\": \"[5EF3]6400-75270A@77\",\r\n            \"birthday\": \"1934-11-25\",\r\n            \"orders\": {\r\n                \"href\": \"http://localhost:7187/customers/5fc125a21633312494c429be/orders\"\r\n            },\r\n            \"href\": \"http://localhost:7187/customers/5fc125a21633312494c429be\",\r\n            \"lightspeed\": \"[Phillon HZZK@(-542.305;-542.305)]\",\r\n            \"age\": 88\r\n        }"
 								},
 								"url": {
-									"raw": "http://localhost:7187/customers/",
+									"raw": "http://localhost:7187/customers?_body=false",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "7187",
 									"path": [
-										"customers",
-										""
+										"customers"
+									],
+									"query": [
+										{
+											"key": "_body",
+											"value": "false"
+										}
 									]
 								}
 							},
@@ -522,7 +527,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": ""
+									"raw": "{\r\n    \"name\": \"Roger Lafortune\",\r\n    \"email\": \"btrbrgae@superrito.com\",\r\n    \"planet\": \"Phillon HZZK\",\r\n    \"coord\": {\r\n        \"lat\": -542.305,\r\n        \"lon\": -855.561\r\n    },\r\n    \"phone\": \"[[5EF]3]64-00-752@70\",\r\n    \"birthday\": \"1934-11-25\",\r\n    \"referalCode\": \"Ookuuh6wuQuee\",\r\n    \"orders\": {\r\n        \"href\": \"http://localhost:7187/customers/63a0a53de0a9a92f1459ce5a/orders\"\r\n    },\r\n    \"href\": \"http://localhost:7187/customers/63a0a53de0a9a92f1459ce5a\",\r\n    \"lightspeed\": \"[Phillon HZZK@(-542.305;-542.305)]\",\r\n    \"age\": 88\r\n}"
 								},
 								"url": {
 									"raw": "http://localhost:7187/customers/",
@@ -553,7 +558,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": ""
+									"raw": "{\r\n    \"name\": 149358,\r\n    \"planet\": \"Phillon HZZK\",\r\n    \"coord\": {\r\n        \"lat\": -542.305,\r\n        \"lon\": -855.561\r\n    },\r\n    \"phone\": \"[[5EF]3]64-00-752@70\",\r\n    \"birthday\": \"1934-11-25\",\r\n    \"referalCode\": \"Ookuuh6wuQuee\",\r\n    \"orders\": {\r\n        \"href\": \"http://localhost:7187/customers/63a0a53de0a9a92f1459ce5a/orders\"\r\n    },\r\n    \"href\": \"http://localhost:7187/customers/63a0a53de0a9a92f1459ce5a\",\r\n    \"lightspeed\": \"[Phillon HZZK@(-542.305;-542.305)]\",\r\n    \"age\": 88\r\n}"
 								},
 								"url": {
 									"raw": "http://localhost:7187/customers/",

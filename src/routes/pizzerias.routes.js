@@ -47,7 +47,7 @@ class PizzeriasRoutes {
                 return next(HttpError.NotFound(`La pizzeria avec l'identifiant ${req.params.idPizzeria} n'existe pas`));
             }
 
-            pizzeria = pizzeria.toObject({ getters: false, virtuals: false });
+            pizzeria = pizzeria.toObject({ getters: false, virtuals: true });
             pizzeria = pizzeriaRepository.transform(pizzeria, retrieveOptions);
 
             res.status(200).json(pizzeria);

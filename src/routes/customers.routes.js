@@ -154,16 +154,16 @@ class CustomerRoutes {
                 return next(HttpError.BadRequest('Le client ne peut pas contenir aucune donnée'));
             }
 
-            //TODO: Erreur 409: Conflit (Lorsque le courriel existe déjà)
-
             let newCustomer = await customerRepository.create(req.body);
             newCustomer = newCustomer.toObject({ getters: false, virtuals: false });
             newCustomer = customerRepository.transform(newCustomer);
 
-            if (req.params._body === "false") {
+            if (req.query._body === "false") {
                 res.status(204).end();
             }
-            res.status(201).json(newCustomer);
+            else {
+                res.status(201).json(newCustomer);
+            }
         }
         catch (err) {
             next(err);

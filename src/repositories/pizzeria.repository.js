@@ -42,7 +42,10 @@ class PizzeriaRepository {
         // Accorder avec la personne qui prog ordersRepository pour la suite...
         //?embed=orders
         if (retrieveOptions.orders) {
-            pizzeria.orders = ordersRepository.transform(pizzeria.orders);
+            pizzeria.orders = pizzeria.orders.map((o) => {
+                o = ordersRepository.transform(o);
+                return o;
+            });
         }
         else {
             // Il a pas order si yer pas dans le retrieveOption

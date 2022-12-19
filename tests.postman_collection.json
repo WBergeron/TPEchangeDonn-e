@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "e1829c73-86de-4970-87ad-b6a4a5a55da5",
+		"_postman_id": "326b9240-de41-45fb-bfa3-fa22393dcdaf",
 		"name": "tests",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "23246378"
+		"_exporter_id": "23246397"
 	},
 	"item": [
 		{
@@ -51,118 +51,28 @@
 								}
 							},
 							"response": []
-						}
-					]
-				},
-				{
-					"name": "C2",
-					"item": [
-						{
-							"name": "200 - Put",
-							"request": {
-								"method": "PUT",
-								"header": [
-									{
-										"key": "Content-Type",
-										"name": "Content-Type",
-										"value": "application/json",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
-								"url": {
-									"raw": "http://localhost:7187/customers/5fc125a21633312494c429be",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "7187",
-									"path": [
-										"customers",
-										"5fc125a21633312494c429be"
-									]
-								}
-							},
-							"response": []
 						},
 						{
-							"name": "204 - Put",
+							"name": "200 - GetByIDEmbed",
 							"request": {
-								"method": "PUT",
+								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:7187/customers/5fc125a21633312494c429be",
+									"raw": "http://localhost:7187/pizzerias/5fc125a21633312494c41b2c?embed=orders",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "7187",
 									"path": [
-										"customers",
-										"5fc125a21633312494c429be"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "404 - Put",
-							"request": {
-								"method": "PUT",
-								"header": [],
-								"url": {
-									"raw": "http://localhost:7187/customers/5fc125a21633312494c429be",
-									"protocol": "http",
-									"host": [
-										"localhost"
+										"pizzerias",
+										"5fc125a21633312494c41b2c"
 									],
-									"port": "7187",
-									"path": [
-										"customers",
-										"5fc125a21633312494c429be"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "409 - Put",
-							"request": {
-								"method": "PUT",
-								"header": [],
-								"url": {
-									"raw": "http://localhost:7187/customers/5fc125a21633312494c429be",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "7187",
-									"path": [
-										"customers",
-										"5fc125a21633312494c429be"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "422 - Put",
-							"request": {
-								"method": "PUT",
-								"header": [],
-								"url": {
-									"raw": "http://localhost:7187/customers/5fc125a21633312494c429be",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "7187",
-									"path": [
-										"customers",
-										"5fc125a21633312494c429be"
+									"query": [
+										{
+											"key": "embed",
+											"value": "orders"
+										}
 									]
 								}
 							},
@@ -263,6 +173,164 @@
 											"key": "planet",
 											"value": "Kaomia"
 										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "C2",
+					"item": [
+						{
+							"name": "200 - Put",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n            \"coord\": {\r\n                \"lat\": -542.305,\r\n                \"lon\": -855.561\r\n            },\r\n            \"name\": \"Jean Cule\",\r\n            \"planet\": \"Phillon HZZK\",\r\n            \"referalCode\": \"Ookuuh6wuQuee\",\r\n            \"email\": \"JeanHAdam@superrito.com\",\r\n            \"phone\": \"5EF3640075270A77\"\r\n        }"
+								},
+								"url": {
+									"raw": "http://localhost:7187/customers/5fc125a21633312494c429be",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7187",
+									"path": [
+										"customers",
+										"5fc125a21633312494c429be"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "204 - Put",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n            \"coord\": {\r\n                \"lat\": -542.305,\r\n                \"lon\": -855.561\r\n            },\r\n            \"name\": \"Jean Cule\",\r\n            \"planet\": \"Phillon HZZK\",\r\n            \"referalCode\": \"Ookuuh6wuQuee\",\r\n            \"email\": \"JeanHAdam@superrito.com\",\r\n            \"phone\": \"5EF3640075270A77\"\r\n        }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:7187/customers/5fc125a21633312494c429be?_body=false",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7187",
+									"path": [
+										"customers",
+										"5fc125a21633312494c429be"
+									],
+									"query": [
+										{
+											"key": "_body",
+											"value": "false"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "404 - Put",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n            \"coord\": {\r\n                \"lat\": -542.305,\r\n                \"lon\": -855.561\r\n            },\r\n            \"name\": \"Jean Cule\",\r\n            \"planet\": \"Phillon HZZK\",\r\n            \"referalCode\": \"Ookuuh6wuQuee\",\r\n            \"email\": \"JeanHAdam@superrito.com\",\r\n            \"phone\": \"5EF3640075270A77\"\r\n        }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:7187/customers/5fc125a21633312494c429yu",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7187",
+									"path": [
+										"customers",
+										"5fc125a21633312494c429yu"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "409 - Put",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "\r\n{\r\n            \"coord\": {\r\n                \"lat\": -542.305,\r\n                \"lon\": -855.561\r\n            },\r\n            \"name\": \"Jean Cule\",\r\n            \"planet\": \"Phillon HZZK\",\r\n            \"referalCode\": \"Ookuuh6wuQuee\",\r\n            \"email\": \"VickDaviau@dayrep.com\",\r\n            \"phone\": \"5EF3640075270A77\"\r\n        }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:7187/customers/5fc125a21633312494c429be",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7187",
+									"path": [
+										"customers",
+										"5fc125a21633312494c429be"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "422 - Put",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n            \"coord\": {\r\n                \"lat\": -542.305,\r\n                \"lon\": -855.561\r\n            },\r\n            \"name\": \"Jean Cule\",\r\n            \"planet\": \"Phillon HZZK\",\r\n            \"referalCode\": \"Ookuuh6wuQuee\",\r\n            \"email\": \"JeanHAdam@superrito.com\"\r\n        }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:7187/customers/5fc125a21633312494c429be",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7187",
+									"path": [
+										"customers",
+										"5fc125a21633312494c429be"
 									]
 								}
 							},

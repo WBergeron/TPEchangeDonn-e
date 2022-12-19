@@ -86,7 +86,6 @@ class OrdersRoutes {
             return next(err);
         }
     }
-
 }
 
 new OrdersRoutes();

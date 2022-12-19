@@ -1,0 +1,865 @@
+{
+	"info": {
+		"_postman_id": "e1829c73-86de-4970-87ad-b6a4a5a55da5",
+		"name": "tests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23246378"
+	},
+	"item": [
+		{
+			"name": "A",
+			"item": [
+				{
+					"name": "P2",
+					"item": [
+						{
+							"name": "200 - GetByID",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:7187/pizzerias/5fc125a21633312494c41b2c",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7187",
+									"path": [
+										"pizzerias",
+										"5fc125a21633312494c41b2c"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "404 - GetByID",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:7187/pizzerias/5fc125a216zhjuifvedrkg",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7187",
+									"path": [
+										"pizzerias",
+										"5fc125a216zhjuifvedrkg"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "C2",
+					"item": [
+						{
+							"name": "200 - Put",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:7187/customers/5fc125a21633312494c429be",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7187",
+									"path": [
+										"customers",
+										"5fc125a21633312494c429be"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "204 - Put",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:7187/customers/5fc125a21633312494c429be",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7187",
+									"path": [
+										"customers",
+										"5fc125a21633312494c429be"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "404 - Put",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:7187/customers/5fc125a21633312494c429be",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7187",
+									"path": [
+										"customers",
+										"5fc125a21633312494c429be"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "409 - Put",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:7187/customers/5fc125a21633312494c429be",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7187",
+									"path": [
+										"customers",
+										"5fc125a21633312494c429be"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "422 - Put",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:7187/customers/5fc125a21633312494c429be",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7187",
+									"path": [
+										"customers",
+										"5fc125a21633312494c429be"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "C3",
+					"item": [
+						{
+							"name": "200 - GetAll",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:7187/customers/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7187",
+									"path": [
+										"customers",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "200 - GetAll with page",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:7187/customers?page=3",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7187",
+									"path": [
+										"customers"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "3"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "200 - GetAll with limit",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:7187/customers?limit=30",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7187",
+									"path": [
+										"customers"
+									],
+									"query": [
+										{
+											"key": "limit",
+											"value": "30"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "200 - GetAll with planet",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:7187/customers?planet=Kaomia",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7187",
+									"path": [
+										"customers"
+									],
+									"query": [
+										{
+											"key": "planet",
+											"value": "Kaomia"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "B",
+			"item": [
+				{
+					"name": "P1",
+					"item": [
+						{
+							"name": "200 - GetAll",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:7187/pizzerias/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7187",
+									"path": [
+										"pizzerias",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "200 - GetAll with page",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:7187/pizzerias?page=3",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7187",
+									"path": [
+										"pizzerias"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "3"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "200 - GetAll with limit",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:7187/pizzerias?limit=30",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7187",
+									"path": [
+										"pizzerias"
+									],
+									"query": [
+										{
+											"key": "limit",
+											"value": "30"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "200 - GetAll with planet",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:7187/pizzerias?planet=Kaomia",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7187",
+									"path": [
+										"pizzerias"
+									],
+									"query": [
+										{
+											"key": "planet",
+											"value": "Kaomia"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "C1",
+					"item": [
+						{
+							"name": "201 - Post",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:7187/customers/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7187",
+									"path": [
+										"customers",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "204 - Post",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:7187/customers/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7187",
+									"path": [
+										"customers",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "409- Post",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:7187/customers/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7187",
+									"path": [
+										"customers",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "422- Post",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:7187/customers/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7187",
+									"path": [
+										"customers",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "O2",
+					"item": [
+						{
+							"name": "200 - Get",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:7187/pizzerias/5fc125a21633312494c41e86/orders/637cd11308ce7d60f8d28d65",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7187",
+									"path": [
+										"pizzerias",
+										"5fc125a21633312494c41e86",
+										"orders",
+										"637cd11308ce7d60f8d28d65"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "200 - Get + embed=customer",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:7187/pizzerias/5fc125a21633312494c41e86/orders/637cd11308ce7d60f8d28d65?embed=customer",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7187",
+									"path": [
+										"pizzerias",
+										"5fc125a21633312494c41e86",
+										"orders",
+										"637cd11308ce7d60f8d28d65"
+									],
+									"query": [
+										{
+											"key": "embed",
+											"value": "customer"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "404 - Get",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:7187/pizzerias/5fc125a21633312494c41b0d/orders/y9agpt7e8ru4agt97p",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7187",
+									"path": [
+										"pizzerias",
+										"5fc125a21633312494c41b0d",
+										"orders",
+										"y9agpt7e8ru4agt97p"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "C",
+			"item": [
+				{
+					"name": "P3",
+					"item": [
+						{
+							"name": "201 - Post",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"planet\": \"Inzinda\",\n\t\"coord\": {\n\t\t\"lat\": -758.543,\n\t\t\"lon\": -234.435\n\t},\n\t\"chef\": {\n\t\t\"name\": \"kiki\",\n\t\t\"ancestor\": \"Thumera\",\n\t\t\"speciality\": \"Zucchini\"\n\t}\n}"
+								},
+								"url": {
+									"raw": "http://localhost:7187/pizzerias/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7187",
+									"path": [
+										"pizzerias",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "422 - Post",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"planet\": \"Inzinda\",\n\t\"coord\": {\n\t\t\"lat\": -758.543,\n\t\t\"lon\": -234.435\n\t},\n\t\"chef\": {\n\t\t\"name\": \"lol\",\n\t\t\"ancestor\": \"Thum\",\n\t\t\"speciality\": \"Zucchini\"\n\t}\n}"
+								},
+								"url": {
+									"raw": "http://localhost:7187/pizzerias/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7187",
+									"path": [
+										"pizzerias",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "204 - Post",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"planet\": \"Inzinda\",\n\t\"coord\": {\n\t\t\"lat\": -753.543,\n\t\t\"lon\": -234.4635\n\t},\n\t\"chef\": {\n\t\t\"name\": \"lili\",\n\t\t\"ancestor\": \"Thumera\",\n\t\t\"speciality\": \"Zucchini\"\n\t}\n}"
+								},
+								"url": {
+									"raw": "http://localhost:7187/pizzerias?_body=false",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7187",
+									"path": [
+										"pizzerias"
+									],
+									"query": [
+										{
+											"key": "_body",
+											"value": "false"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "C4",
+					"item": [
+						{
+							"name": "200 - GetByID",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:7187/customers/5fc125a21633312494c429be",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7187",
+									"path": [
+										"customers",
+										"5fc125a21633312494c429be"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "200 - GetByID embed=orders",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:7187/customers/5fc125a21633312494c42ba6?embed=orders",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7187",
+									"path": [
+										"customers",
+										"5fc125a21633312494c42ba6"
+									],
+									"query": [
+										{
+											"key": "embed",
+											"value": "orders"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "404 - GetByID",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:7187/customers/5fc125a21643312494c429be",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7187",
+									"path": [
+										"customers",
+										"5fc125a21643312494c429be"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "O1",
+					"item": [
+						{
+							"name": "200 - Get",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:7187/orders",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7187",
+									"path": [
+										"orders"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "200 - Get with page",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:7187/orders?page=3",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7187",
+									"path": [
+										"orders"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "3"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "200 - Get with limit",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:7187/orders?limit=20",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7187",
+									"path": [
+										"orders"
+									],
+									"query": [
+										{
+											"key": "limit",
+											"value": "20"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "200 - Get with topping",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:7187/orders?topping=Jalapeño",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7187",
+									"path": [
+										"orders"
+									],
+									"query": [
+										{
+											"key": "topping",
+											"value": "Jalapeño"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}

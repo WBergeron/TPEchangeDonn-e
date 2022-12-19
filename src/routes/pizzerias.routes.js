@@ -14,6 +14,8 @@ import pizzeriaRepository from '../repositories/pizzeria.repository.js';
 import pizzeriaValidator from '../validators/pizzerias.validator.js';
 import validator from '../middlewares/validator.js';
 
+import orderRepository from '../repositories/order.repository.js';
+
 // TODO: Importer le repository pour les fonctions de recherche
 
 const router = express.Router();
@@ -25,6 +27,7 @@ class PizzeriasRoutes {
         router.get('/', this.getAll);
         router.get('/:idPizzeria', this.getOne);
         router.post('/', pizzeriaValidator.complete(), validator, this.post);
+        router.get('/:idPizzeria/orders/:idOrder', this.getOneOrder);
     }
 
     ///-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-///
@@ -121,6 +124,37 @@ class PizzeriasRoutes {
             pizzerias = pizzerias.filter(p => p);
 
             res.status(200).json(pizzerias);
+        } catch (err) {
+            next(err);
+        }
+    }
+
+    ///-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-///
+    // Dev: Hadrien Breton
+    ///-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-///
+    async getOneOrder(req, res, next) {
+        try {
+            const retrieveOptions = {};
+            if (req.query.embed === 'customer') {
+                retrieveOptions.customer = true;
+            }
+
+            const pizzeriaId = req.params.idPizzeria;
+            const orderId = req.params.idOrder;
+            let order = await orderRepository.retrieveById(pizzeriaId, orderId, retrieveOptions);
+
+            if (order) {
+                order = order.toObject({ getters: false, virtuals: true });
+                order = orderRepository.transform(order, retrieveOptions);
+                if (pizzeriaId == order.pizzeria) {
+                    res.status(200).json(order);
+                }
+                else {
+                    return next(HttpError.NotFound(`L'order avec l'identifiant ${req.params.idOrder} n'existe pas pour la pizzeria ${req.params.idPizzeria}`));
+                }
+            } else {
+                return next(HttpError.NotFound(`L'order avec l'identifiant ${req.params.idOrder} n'existe pas`));
+            }
         } catch (err) {
             next(err);
         }

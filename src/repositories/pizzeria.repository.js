@@ -7,6 +7,7 @@
 ///-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-///
 
 import Pizzeria from '../models/pizzeria.model.js';
+import ordersRepository from '../repositories/order.repository.js';
 
 class PizzeriaRepository {
     ///-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-///
@@ -18,9 +19,8 @@ class PizzeriaRepository {
 
         // Si l'emblem orders est la
         if (retrieveOptions.orders) {
-            retrieveQuery.populate('order');
+            retrieveQuery.populate('orders');
         }
-
         return retrieveQuery;
     }
 
@@ -45,9 +45,8 @@ class PizzeriaRepository {
             pizzeria.orders = ordersRepository.transform(pizzeria.orders);
         }
         else {
-            // Il a pas order si yer pas dans le retrieveOptions
-            // On veut tu quand même faire un href pour rien???
-            pizzeria.orders = { href: `${process.env.BASE_URL}/pizzerias/${pizzeria._id}/orders` }
+            // Il a pas order si yer pas dans le retrieveOption
+            pizzeria.orders = { href: `${process.env.BASE_URL}/pizzerias/${pizzeria._id}/orders/` }
         }
         // Créer se qu'on veut renvoyer au client de plus
         pizzeria.href = `${process.env.BASE_URL}/pizzerias/${pizzeria._id}`;

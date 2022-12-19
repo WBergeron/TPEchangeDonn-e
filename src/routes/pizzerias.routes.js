@@ -36,7 +36,7 @@ class PizzeriasRoutes {
     async getOne(req, res, next) {
         try {
             const retrieveOptions = {};
-            if (req.query.embed && req.query.embed === 'orders') {
+            if (req.query.embed === 'orders') {
                 retrieveOptions.orders = true;
             }
 

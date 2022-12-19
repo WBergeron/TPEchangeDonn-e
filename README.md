@@ -2,5 +2,5 @@
 Projet Space Explorer 3E4 - Automne 2020
 
 William Bergeron (2052824) Partie A
-Hadrien Breton () Partie B
+Hadrien Breton (2056621) Partie B
 Julius Leblanc (1974350) Partie C
